@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #d1d1d1;
+}
+
+header {
+  display: flex;
+  width: 100%;
+  height: 4rem;
+  background-color: #121212;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+}
+
+.judul {
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.3rem;
+}
+
+#search {
+  width: 20rem;
+  height: 2rem;
+  padding-left: 1rem;
+  border-radius: 3px;
+}
+
+.tombol {
+  height: 2rem;
+  width: 3rem;
+  background-color: #ce2525;
+  color: aliceblue;
+  border-radius: 3px;
+}
+
+.foto {
+  border-radius: 50%;
+  width: 2rem;
+}
+
+h1 {
+  margin: 0 5%;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 5%;
+  flex: 1 3 1 1;
+}
+
+.card {
+  width: 15rem;
+  flex: 1 0 200px; /* Atur lebar minimum dan maksimum card */
+  min-width: 200px; /* Lebar minimum card */
+  max-width: 300px; /* Lebar maksimum card */
+  background-color: #fff;
+  margin: 1rem;
+}
+
+.poster {
+  width: 100%;
+}
+
+.judul-film {
+  font-weight: bold;
+  text-transform: capitalize;
+  margin: 0.7rem;
+}
+
+.tambahan {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0 0.7rem;
+}
+
+.length,
+.lang,
+.rating,
+.reviews {
+  padding-right: 0.7rem;
+  align-items: center;
+}
+
+.rinci {
+  font-weight: 200;
+}
+
+button.detail {
+  background-color: salmon;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0 1rem 0.7rem;
+}

@@ -103,7 +103,7 @@ function success(result) {
 
       // menjalankan fungsi api ke dua
       getDetailMovies(
-        `http://www.omdbapi.com/?apikey=441188f8&i=${imdbid}`,
+        `https://www.omdbapi.com/?apikey=441188f8&i=${imdbid}`,
         sukses,
         eror
       );
@@ -122,7 +122,7 @@ tombolInput.addEventListener("click", function () {
 
   // menjalankan API pertama
   getDataMahasiswa(
-    `http://www.omdbapi.com/?apikey=441188f8&s=${nilaiInput}`,
+    `https://www.omdbapi.com/?apikey=441188f8&s=${nilaiInput}`,
     success,
     error
   );

@@ -89,10 +89,8 @@ function success(result) {
         }
 
         const tombol = document.querySelector(".close");
-        console.log(tombol);
         tombol.addEventListener("click", function () {
           overlay.style.display = "none";
-          console.log(boxDetail.classList.contains("active"));
           if (!boxDetail.classList.contains("active")) {
             boxDetail.classList.add("active");
           }
@@ -117,8 +115,15 @@ function error(result) {
   console.log("ERROR");
 }
 
-getDataMahasiswa(
-  `http://www.omdbapi.com/?apikey=441188f8&s=avengers`,
-  success,
-  error
-);
+const input = document.getElementById("search");
+const tombolInput = document.querySelector(".tombol");
+tombolInput.addEventListener("click", function () {
+  nilaiInput = input.value;
+
+  // menjalankan API pertama
+  getDataMahasiswa(
+    `http://www.omdbapi.com/?apikey=441188f8&s=${nilaiInput}`,
+    success,
+    error
+  );
+});

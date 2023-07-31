@@ -1,119 +1,134 @@
-function getDataMahasiswa(url, success, error) {
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        success(xhr.responseText);
-      }
-    } else {
-      error(xhr.response);
-    }
-  };
+// function getDataMahasiswa(url, success, error) {
+//   const xhr = new XMLHttpRequest();
+//   xhr.onreadystatechange = function () {
+//     if (xhr.readyState === 4) {
+//       if (xhr.status === 200) {
+//         success(xhr.responseText);
+//       }
+//     } else {
+//       error(xhr.response);
+//     }
+//   };
 
-  xhr.open("get", url);
-  xhr.send();
-}
+//   xhr.open("get", url);
+//   xhr.send();
+// }
 
-const boxDetail = document.querySelector(".modal-box");
+// const boxDetail = document.querySelector(".modal-box");
 
-function success(result) {
-  hasil = JSON.parse(result);
-  movies = hasil.Search;
-  let card = "";
-  movies.forEach((movies) => {
-    card += `
-        <div class="card">
-        <img src="${movies.Poster}" class="poster" />
-        <div class="judul-film">${movies.Title}</div>
-        <div class="tahun">tahun terbit :${movies.Year}</div>
-        <button class="detail" data-imdbid="${movies.imdbID}">rincian</button>
-      </div>`;
-  });
+// function success(result) {
+//   hasil = JSON.parse(result);
+//   movies = hasil.Search;
+//   let card = "";
+//   movies.forEach((movies) => {
+//     card += `
+//         <div class="card">
+//         <img src="${movies.Poster}" class="poster" />
+//         <div class="judul-film">${movies.Title}</div>
+//         <div class="tahun">tahun terbit :${movies.Year}</div>
+//         <button class="detail" data-imdbid="${movies.imdbID}">rincian</button>
+//       </div>`;
+//   });
 
-  let cards = document.querySelector(".cards");
-  cards.innerHTML = card;
+//   let cards = document.querySelector(".cards");
+//   cards.innerHTML = card;
 
-  const detailElements = document.querySelectorAll(".detail");
+//   const detailElements = document.querySelectorAll(".detail");
 
-  detailElements.forEach(function (detail) {
-    detail.addEventListener("click", function (e) {
-      let imdbid = detail.getAttribute("data-imdbid");
-      console.log(imdbid);
+//   detailElements.forEach(function (detail) {
+//     detail.addEventListener("click", function (e) {
+//       let imdbid = detail.getAttribute("data-imdbid");
+//       console.log(imdbid);
 
-      // menjalankan api baru
-      function getDetailMovies(url, success, error) {
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-              success(xhr.responseText);
-            }
-          } else {
-            error(xhr.response);
-          }
-        };
+//       // menjalankan api baru
+//       function getDetailMovies(url, success, error) {
+//         const xhr = new XMLHttpRequest();
+//         xhr.onreadystatechange = function () {
+//           if (xhr.readyState === 4) {
+//             if (xhr.status === 200) {
+//               success(xhr.responseText);
+//             }
+//           } else {
+//             error(xhr.response);
+//           }
+//         };
 
-        xhr.open("get", url);
-        xhr.send();
-      }
+//         xhr.open("get", url);
+//         xhr.send();
+//       }
 
-      // fungsi suksess
-      function sukses(result) {
-        hasil = JSON.parse(result);
-        modalbox = `
-        <img
-        class="poster"
-        src="${hasil.Poster}"
-      />
-      <div class="desc">
-        <div class="judulfilm"><strong>judul film : </strong>${hasil.Title}</div>
-        <div class="tahun-rilis"><strong>tahun rilis : </strong>${hasil.Year}</div>
-        <div class="durasi"><strong>durasi : </strong>${hasil.Runtime}</div>
-        <div class="genre">
-          <strong>genre : </strong>${hasil.Genre}
-        </div>
-        <div class="sinopsis">
-          <strong>plot : </strong>${hasil.Plot}
-        </div>
-        <button class="close">close</button>
-        </div>
-        `;
+//       // fungsi suksess
+//       function sukses(result) {
+//         hasil = JSON.parse(result);
+//         modalbox = `
+//         <img
+//         class="poster"
+//         src="${hasil.Poster}"
+//       />
+//       <div class="desc">
+//         <div class="judulfilm"><strong>judul film : </strong>${hasil.Title}</div>
+//         <div class="tahun-rilis"><strong>tahun rilis : </strong>${hasil.Year}</div>
+//         <div class="durasi"><strong>durasi : </strong>${hasil.Runtime}</div>
+//         <div class="genre">
+//           <strong>genre : </strong>${hasil.Genre}
+//         </div>
+//         <div class="sinopsis">
+//           <strong>plot : </strong>${hasil.Plot}
+//         </div>
+//         <button class="close">close</button>
+//         </div>
+//         `;
 
-        boxDetail.innerHTML = modalbox;
+//         boxDetail.innerHTML = modalbox;
 
-        const overlay = document.querySelector(".overlay");
-        overlay.style.display = "block";
+//         const overlay = document.querySelector(".overlay");
+//         overlay.style.display = "block";
 
-        if (boxDetail.classList.contains("active")) {
-          boxDetail.classList.remove("active");
-        }
+//         if (boxDetail.classList.contains("active")) {
+//           boxDetail.classList.remove("active");
+//         }
 
-        const tombol = document.querySelector(".close");
-        tombol.addEventListener("click", function () {
-          overlay.style.display = "none";
-          if (!boxDetail.classList.contains("active")) {
-            boxDetail.classList.add("active");
-          }
-        });
-      }
+//         const tombol = document.querySelector(".close");
+//         tombol.addEventListener("click", function () {
+//           overlay.style.display = "none";
+//           if (!boxDetail.classList.contains("active")) {
+//             boxDetail.classList.add("active");
+//           }
+//         });
+//       }
 
-      function eror(result) {
-        console.log("ERROR!");
-      }
+//       function eror(result) {
+//         console.log("ERROR!");
+//       }
 
-      // menjalankan fungsi api ke dua
-      getDetailMovies(
-        `https://www.omdbapi.com/?apikey=441188f8&i=${imdbid}`,
-        sukses,
-        eror
-      );
-    });
-  });
-}
+//       // menjalankan fungsi api ke dua
+//       getDetailMovies(
+//         `https://www.omdbapi.com/?apikey=441188f8&i=${imdbid}`,
+//         sukses,
+//         eror
+//       );
+//     });
+//   });
+// }
 
-function error(result) {
-  console.log("ERROR");
-}
+// function error(result) {
+//   console.log("ERROR");
+// }
+
+// const input = document.getElementById("search");
+// const tombolInput = document.querySelector(".tombol");
+// tombolInput.addEventListener("click", function () {
+//   nilaiInput = input.value;
+
+//   // menjalankan API pertama
+//   getDataMahasiswa(
+//     `https://www.omdbapi.com/?apikey=441188f8&s=${nilaiInput}`,
+//     success,
+//     error
+//   );
+// });
+
+// ajax http ke fetch api
 
 const input = document.getElementById("search");
 const tombolInput = document.querySelector(".tombol");
@@ -121,9 +136,71 @@ tombolInput.addEventListener("click", function () {
   nilaiInput = input.value;
 
   // menjalankan API pertama
-  getDataMahasiswa(
-    `https://www.omdbapi.com/?apikey=441188f8&s=${nilaiInput}`,
-    success,
-    error
-  );
+  fetch(`https://www.omdbapi.com/?apikey=441188f8&s=${nilaiInput}`)
+    .then((response) => response.json())
+    .then((response) => {
+      const movies = response.Search;
+      let cards = "";
+      movies.forEach((movie) => {
+        cards += `
+        <div class="card">
+          <img src="${movie.Poster}" class="poster" />
+          <div class="judul-film">${movie.Title}</div>
+          <div class="tahun">tahun terbit :${movie.Year}</div>
+          <button class="detail" data-imdbid="${movie.imdbID}">rincian</button>
+        </div>`;
+      });
+      let card = document.querySelector(".cards");
+      card.innerHTML = cards;
+
+      const detailElements = document.querySelectorAll(".detail");
+
+      detailElements.forEach(function (detail) {
+        detail.addEventListener("click", function (e) {
+          let imdbid = detail.getAttribute("data-imdbid");
+
+          // menjalankan api kedua
+          fetch(`https://www.omdbapi.com/?apikey=441188f8&i=${imdbid}`)
+            .then((response) => response.json())
+            .then((response) => {
+              let modalbox = `<img
+              class="poster"
+              src="${response.Poster}"
+            />
+            <div class="desc">
+              <div class="judulfilm"><strong>judul film : </strong>${response.Title}</div>
+              <div class="tahun-rilis"><strong>tahun rilis : </strong>${response.Year}</div>
+              <div class="durasi"><strong>durasi : </strong>${response.Runtime}</div>
+              <div class="genre">
+                <strong>genre : </strong>${response.Genre}
+              </div>
+              <div class="sinopsis">
+                <strong>plot : </strong>${response.Plot}
+              </div>
+              <button class="close">close</button>
+              </div>`;
+
+              const boxDetail = document.querySelector(".modal-box");
+              boxDetail.innerHTML = modalbox;
+
+              const overlay = document.querySelector(".overlay");
+              overlay.style.display = "block";
+
+              if (boxDetail.classList.contains("active")) {
+                boxDetail.classList.remove("active");
+              }
+
+              const tombol = document.querySelector(".close");
+              tombol.addEventListener("click", function () {
+                overlay.style.display = "none";
+                if (!boxDetail.classList.contains("active")) {
+                  boxDetail.classList.add("active");
+                }
+              });
+            })
+            .catch((response) => console.log(response));
+        });
+      });
+    })
+    .catch((response) => console.log(response));
 });
